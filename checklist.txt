@@ -1,0 +1,13 @@
+FRONT-END:
+	-Landing page (sign up)
+	-Sign in page
+	-Home page (feed)
+	-Reivew page (create review)
+	-Review page (read review)
+	-User page
+	-Game page
+
+BACK-END:
+	-Create database
+	-Link database entries to appropriate parts of site
+	-Log in/out features

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title>Game Site Thing</title>
+
+	<!-- JS/jQuery -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+	<!-- TinyMCE editor -->
+	<script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="tinymce/jquery.tinymce.min.js"></script>
+
+	<!-- CSS, Fonts -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="css/content.css">
+	<link href='https://fonts.googleapis.com/css?family=Cabin:600' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript">
+    	$(document).ready(function(){
+
+    		// Variables for use when resizing sidebar
+    		var username = $("#profile_username");
+    		var iconContainer = $(".icon_container");
+    		var picture = $("#profile_picture");
+    		var sidebar = $("#home_left");
+    		var list = $(".profile_list");
+
+    		// Setting the left sidebar as resizable
+			$("#home_left").resizable({
+				handles: "e",
+				maxWidth: sidebar.width(),
+				minWidth: 100,
+				resize: function() {
+					//Width of profile picture
+					picture.width(sidebar.width() - 24);
+
+					//Appearance of username, icons, and lists
+					if(sidebar.width() < 200) {
+						username.hide();
+						iconContainer.width(sidebar.width());
+						iconContainer.css("padding", "0");
+						list.hide();
+
+					}
+					else {
+						username.show();
+						iconContainer.width("auto");
+						iconContainer.css("padding", "0px 7px");
+						list.show();
+					}
+				}
+			});
+
+			$("#profile_username").click(function() {
+				$("#content").load("review.html");
+				$(document).ajaxComplete(function() {
+					alert("We got em boys");
+					tinymce.init({
+	    				selector: ".tinymce",
+
+	    				menubar: false
+	    			});
+				});
+			});
+    	});
+
+		function getEditorContent() {
+			return tinyMCE.activeEditor.getContent();
+		}
+    	
+    </script>
+</head>
+<body>
+	<div id = "home_wrapper">
+
+		<!-- Left-side sidebar -->
+		<div id = "home_left">
+			<a href="#"><img src="images/profile.jpg" id = "profile_picture"/></a>
+			<a href="#"><p id="profile_username">njmnbb</p></a>
+			<div class = "icon_container">
+				<a href="#"><img src="images/favorite.png" class = "profile_icons"/></a><p>1,234</p>
+			</div>
+			<div class = "icon_container">
+				<a href="#"><img src="images/pencil.png" class = "profile_icons"/></a>
+			</div>
+			<div class = "icon_container">
+				<a href="#"><img src="images/tool.png" class = "profile_icons"/></a>
+			</div>
+
+			<ul class = "profile_list">
+				<h3>Following:</h3>
+				<li><a href = "google.com">njmnbb</a></li>
+				<li><a href = "#">iamcool023</a></li>
+				<li><a href = "#">mylastnameismartini</a></li>
+			</ul>
+		</div>
+
+		<!-- Right-side content -->
+		<div id = "home_right">
+			<div id = "content">
+				<div class = "header">
+					<p>njmnbb's Home</p>
+				</div>
+
+				<div class = "body">
+					<ul class = "content_list">
+						<li>
+							<img src="images/stock1.png" class = "post_picture"/>
+							<div class = "post_text-container">
+								<p class = "post_description"><a href = "#">mylastnameismartini</a> wrote a review on <a href = "#">Supa Mario Brothers 2 baybee</a></p>
+								<p class = "post_title">My review on <a href = "#">Supa Mario Brothers 2 baybee</a></p>
+								<p class = "post_icon"></p>
+								<p class = "post_icon"></p>
+							</div>
+						</li>
+						<li>There</li>
+						<li>Clarice</li>
+					</ul>
+				</div> 
+				
+				<div class = "footer">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

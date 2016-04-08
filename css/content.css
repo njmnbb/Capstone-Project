@@ -1,0 +1,83 @@
+/*
+*===CONTENT===
+*/
+
+#home_right {
+	height: 100%;
+
+	background-color: #e6e6e6;
+
+	overflow-y: scroll;
+}
+
+#content {
+	height: 1000px;
+	width: 85%;
+
+	margin: 20px auto 100px auto;
+}
+
+/*
+*
+*===HEADER===
+*
+*/
+
+.header p {
+	color: #1a1a1a;
+	font-size: 60px;
+}
+
+/*
+*
+*==BODY==
+*
+*/
+
+.body {
+	min-height: 700px;
+	width: 100%;
+
+	margin: 30px auto 0px auto;
+
+	border: 1px solid black;
+}
+
+.content_list {
+	list-style-type: none;
+}
+
+.content_list li {
+	height: 110px;
+	width: auto;
+}
+
+.content_list li:before {
+	height: 100%;
+
+	display: inline-block;		/*!!! 'vertical-align' can only be used if the parent element is inline/inline-block !!!*/
+	vertical-align: middle;		/*!!! and if the middle-aligned element is inline/inline-block !!!*/
+
+	margin-left: 10px;
+
+	content: '';
+}
+
+.content_list img {
+	display: inline-block;
+	vertical-align: middle;
+	width: 90px;
+}
+
+.content_list .post_text-container {
+	display: inline-block;
+	vertical-align: middle;
+
+	border: 1px solid black;
+}
+
+/*
+*
+*===FOOTER===
+*
+*/
