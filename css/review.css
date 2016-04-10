@@ -1,0 +1,18 @@
+/*
+*
+*===REVIEW PAGE===
+*
+*/
+
+#review_form {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#review_form > *:not(.submit_button) {
+	font-size: 22px;
+}
+
+#review_form > *:nth-child(even):not(.submit_button) {
+	margin-bottom: 20px;
+}

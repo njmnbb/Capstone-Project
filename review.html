@@ -1,22 +1,30 @@
 <div class = "header">
-	<p>'game title here' review</p>
+	<p>Review</p>
 </div>
 
 <div class = "body">
 	<form id = "review_form" method="post">
-		<p>Title:</p>
-		<input type = "text"/>
+		<p>Game to Review:</p>
+		<input type = "text" name = "reviewName"/>
 
-		<p>Name:</p>
-		<input type = "text"/>
+		<p>Title:</p>
+		<input type = "text" name = "reviewTitle"/>
+
+		<p>Review Type:</p>
+		<select name = "reviewType">
+			<option value = "" selected>Choose a type of review...</option>
+			<option value = "review">Review</option>
+			<option value = "list">List (Top 5, countdown, etc)</option>
+			<option value = "opinion">Opinion Piece</option>
+			<option value = "discussion">Discussion</option>
+		</select>
 
 		<p>Write your review:</p>
-		<textarea class = "tinymce"></textarea>
+		<textarea class = "tinymce" name = "reviewText"></textarea>
 
-		
+		<input type = "submit" class = "submit_button" onclick="getEditorContent()" value = "Submit Review"/>
 	</form>
-
-	<button onclick="getEditorContent()">Button</button>
+	
 </div>
 
 <div class = "footer"></div>

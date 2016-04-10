@@ -21,6 +21,21 @@ html, body {
 	display: none;
 }
 
+.submit_button {
+	-webkit-border-radius: 5px;
+	border: 0 none;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 15px;
+
+	background-color: #f5dc4d;
+}
+
+.submit_button:hover {
+	cursor: pointer;
+	background-color: #f1cf0e;
+}
+
 /*
 * 
 *===SIGN UP PAGE===

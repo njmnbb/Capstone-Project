@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
 	<link rel="stylesheet" type="text/css" href="css/content.css">
+	<link rel="stylesheet" type="text/css" href="css/review.css">
 	<link href='https://fonts.googleapis.com/css?family=Cabin:600' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript">
@@ -55,13 +56,22 @@
 				}
 			});
 
-			$("#profile_username").click(function() {
-				$("#content").load("review.html");
+			//Use AJAX to load a new page without refreshing the page
+			//Also changes URL to reflect page change
+			$("#pencil").parent().click(function(e) {
+				//Prevents default behavior of 'a' tag of reloading a page
+				e.preventDefault();
+
+				var page = $(this).attr('href');
+
+				//Changes URL to reflect page change
+				history.pushState(null, null, "review");
+
+				//Loads desired page
+				$("#content").load(page);
 				$(document).ajaxComplete(function() {
-					alert("We got em boys");
 					tinymce.init({
 	    				selector: ".tinymce",
-
 	    				menubar: false
 	    			});
 				});
@@ -69,7 +79,7 @@
     	});
 
 		function getEditorContent() {
-			return tinyMCE.activeEditor.getContent();
+			alert(tinyMCE.activeEditor.getContent());
 		}
     	
     </script>
@@ -82,18 +92,18 @@
 			<a href="#"><img src="images/profile.jpg" id = "profile_picture"/></a>
 			<a href="#"><p id="profile_username">njmnbb</p></a>
 			<div class = "icon_container">
-				<a href="#"><img src="images/favorite.png" class = "profile_icons"/></a><p>1,234</p>
+				<a href="#"><img src="images/favorite.png" class = "profile_icons" id = "favorite"/></a><p>1,234</p>
 			</div>
 			<div class = "icon_container">
-				<a href="#"><img src="images/pencil.png" class = "profile_icons"/></a>
+				<a href="review.html"><img src="images/pencil.png" class = "profile_icons" id = "pencil"/></a>
 			</div>
 			<div class = "icon_container">
-				<a href="#"><img src="images/tool.png" class = "profile_icons"/></a>
+				<a href="#"><img src="images/tool.png" class = "profile_icons" id = "settings"/></a>
 			</div>
 
 			<ul class = "profile_list">
 				<h3>Following:</h3>
-				<li><a href = "google.com">njmnbb</a></li>
+				<li><a href = "#">njmnbb</a></li>
 				<li><a href = "#">iamcool023</a></li>
 				<li><a href = "#">mylastnameismartini</a></li>
 			</ul>
