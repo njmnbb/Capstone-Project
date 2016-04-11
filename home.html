@@ -18,17 +18,18 @@
 	<link rel="stylesheet" type="text/css" href="css/sidebar.css">
 	<link rel="stylesheet" type="text/css" href="css/content.css">
 	<link rel="stylesheet" type="text/css" href="css/review.css">
+	<link rel="stylesheet" type="text/css" href="css/profile.css">
 	<link href='https://fonts.googleapis.com/css?family=Cabin:600' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript">
     	$(document).ready(function(){
 
     		// Variables for use when resizing sidebar
-    		var username = $("#profile_username");
+    		var username = $("#sidebar_username");
     		var iconContainer = $(".icon_container");
-    		var picture = $("#profile_picture");
+    		var picture = $("#sidebar_picture");
     		var sidebar = $("#home_left");
-    		var list = $(".profile_list");
+    		var list = $(".sidebar_list");
 
     		// Setting the left sidebar as resizable
 			$("#home_left").resizable({
@@ -36,7 +37,7 @@
 				maxWidth: sidebar.width(),
 				minWidth: 100,
 				resize: function() {
-					//Width of profile picture
+					//Width of sidebar picture
 					picture.width(sidebar.width() - 24);
 
 					//Appearance of username, icons, and lists
@@ -58,23 +59,39 @@
 
 			//Use AJAX to load a new page without refreshing the page
 			//Also changes URL to reflect page change
-			$("#pencil").parent().click(function(e) {
+			$("a").click(function(e) {
 				//Prevents default behavior of 'a' tag of reloading a page
 				e.preventDefault();
 
 				var page = $(this).attr('href');
 
-				//Changes URL to reflect page change
-				history.pushState(null, null, "review");
-
 				//Loads desired page
 				$("#content").load(page);
+
+				//Loads tinyMCE editor when page loads
 				$(document).ajaxComplete(function() {
-					tinymce.init({
-	    				selector: ".tinymce",
-	    				menubar: false
-	    			});
+
+					//If the user is going to the reivew page, load tinyMCE editor
+					if(page == 'review.html') {
+						tinymce.init({
+		    				selector: '.tinymce',
+		    				menubar: false
+		    			});
+					}
+					else {
+						tinymce.remove();
+					}
 				});
+
+				//Changes URL to reflect page change
+				history.pushState(null, null, page);
+			});
+
+			//Loads previous page when user presses 'back' button
+			$(window).on("popstate", function() {
+				var tabName = location.pathname;
+				console.log(tabName);
+
 			});
     	});
 
@@ -89,19 +106,19 @@
 
 		<!-- Left-side sidebar -->
 		<div id = "home_left">
-			<a href="#"><img src="images/profile.jpg" id = "profile_picture"/></a>
-			<a href="#"><p id="profile_username">njmnbb</p></a>
+			<a href="#"><img src="images/profile.jpg" id = "sidebar_picture"/></a>
+			<a href="profile.html"><p id="sidebar_username">njmnbb</p></a>
 			<div class = "icon_container">
-				<a href="#"><img src="images/favorite.png" class = "profile_icons" id = "favorite"/></a><p>1,234</p>
+				<a href="home.html"><img src="images/home.png" class = "sidebar_icons" id = "favorite"/></a>
 			</div>
 			<div class = "icon_container">
-				<a href="review.html"><img src="images/pencil.png" class = "profile_icons" id = "pencil"/></a>
+				<a href="review.html"><img src="images/pencil.png" class = "sidebar_icons" id = "pencil"/></a>
 			</div>
 			<div class = "icon_container">
-				<a href="#"><img src="images/tool.png" class = "profile_icons" id = "settings"/></a>
+				<a href="#"><img src="images/tool.png" class = "sidebar_icons" id = "settings"/></a>
 			</div>
 
-			<ul class = "profile_list">
+			<ul class = "sidebar_list">
 				<h3>Following:</h3>
 				<li><a href = "#">njmnbb</a></li>
 				<li><a href = "#">iamcool023</a></li>
@@ -112,11 +129,10 @@
 		<!-- Right-side content -->
 		<div id = "home_right">
 			<div id = "content">
-				<div class = "header">
-					<p>njmnbb's Home</p>
-				</div>
-
 				<div class = "body">
+					<div class = "header">
+						<p>njmnbb's Home</p>
+					</div>
 					<ul class = "content_list">
 						<li>
 							<img src="images/stock1.png" class = "post_picture"/>
@@ -132,9 +148,7 @@
 					</ul>
 				</div> 
 				
-				<div class = "footer">
-					
-				</div>
+				<!-- <div class = "footer"></div> -->
 			</div>
 		</div>
 	</div>

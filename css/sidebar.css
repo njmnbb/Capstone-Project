@@ -51,7 +51,7 @@
 	vertical-align: top;
 }
 
-.profile_icons {
+.sidebar_icons {
 	width: 40px;
 	background-color: #bfbfbf;
 
@@ -59,18 +59,18 @@
 	transition: background-color 0.25s;
 }
 
-.profile_icons:hover {
+.sidebar_icons:hover {
 	background-color: white;
 }
 
-#profile_picture {
+#sidebar_picture {
 	width: calc(100% - 24px);
 
 	margin: 0;
 	padding: 0;
 }
 
-#profile_username {
+#sidebar_username {
 	width: 100px;
 	display: block;
 	font-size: 23px;
@@ -79,7 +79,7 @@
 	margin-left: auto;
 }
 
-#profile_username:hover {
+#sidebar_username:hover {
 	text-decoration: underline;
 }
 
@@ -87,7 +87,7 @@
 *---Sidebar Lists---
 */
 
-.profile_list {
+.sidebar_list {
 	margin-left: 10%;
 
 	font-size: 20px;
@@ -96,7 +96,7 @@
 	list-style-type: none;
 }
 
-.profile_list a {
+.sidebar_list a {
 	padding: 9px 0px 9px 5px;	/*Padding is used to make clickable area bigger in anchor tag*/
 	display: block;
 
@@ -104,11 +104,11 @@
 	border-radius: 2px 0px 0px 2px;
 }
 
-.profile_list a:hover {
+.sidebar_list a:hover {
 	background-color: grey;
 }
 
-.profile_list li:hover {
+.sidebar_list li:hover {
 	text-decoration: underline;
 }
 
